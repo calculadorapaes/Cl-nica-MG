@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Calendar } from 'lucide-react';
+import { Calendar, Home, User, Activity, CalendarPlus } from 'lucide-react';
 import WhatsAppWidget from '../components/WhatsAppWidget';
 import '../styles/Corporate.css';
 
@@ -83,6 +83,32 @@ const MainLayout = () => {
           </div>
         </div>
       </footer>
+
+      {/* Mobile Bottom Navigation */}
+      <nav className="mobile-bottom-nav">
+        <Link to="/" className="mobile-nav-item">
+          <Home size={20} />
+          <span>Inicio</span>
+        </Link>
+        <Link to="/nosotros" className="mobile-nav-item">
+          <User size={20} />
+          <span>Nosotros</span>
+        </Link>
+        <Link to="/especialidades" className="mobile-nav-item">
+          <Activity size={20} />
+          <span>Servicios</span>
+        </Link>
+        <Link to="/" className="mobile-nav-item primary" onClick={() => {
+            setTimeout(() => {
+              const el = document.getElementById('booking-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+          }}>
+          <CalendarPlus size={20} />
+          <span>Agendar</span>
+        </Link>
+      </nav>
+
       <WhatsAppWidget />
     </div>
   );
