@@ -298,11 +298,19 @@
 
 @media (max-width: 900px) {
   .whatsapp-widget-container {
-    bottom: 24px;
-    right: 24px;
+    bottom: 85px; /* Clear the bottom mobile navigation */
+    right: 16px;
   }
+  
   .chat-window {
-    width: calc(100vw - 48px);
-    height: 60vh;
+    /* Use dvh (dynamic viewport height) so it adjusts correctly when the keyboard opens */
+    width: calc(100vw - 32px);
+    height: 450px;
+    max-height: calc(100dvh - 120px);
+  }
+  
+  .whatsapp-button {
+    width: 56px;
+    height: 56px;
   }
 }
