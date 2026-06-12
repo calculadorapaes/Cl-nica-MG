@@ -20,6 +20,18 @@ const WhatsAppWidget = () => {
 
   const messagesEndRef = useRef(null);
 
+  // Handle scroll locking when chat is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isOpen) setShowMessage(true);
@@ -125,8 +137,10 @@ Mensaje generado automáticamente vía Web.`;
       )}
 
       {isOpen && (
-        <div className="chat-window">
-          <div className="chat-header">
+        <>
+          <div className="chat-backdrop" onClick={() => setIsOpen(false)}></div>
+          <div className="chat-window">
+            <div className="chat-header">
             <div className="chat-header-title">
               <Bot size={20} />
               <span>IA Clínica MG</span>
@@ -182,6 +196,7 @@ Mensaje generado automáticamente vía Web.`;
             )}
           </div>
         </div>
+        </>
       )}
       
       {!isOpen && (
